@@ -8,13 +8,15 @@
     </div>
   </div>
   <div class="mt-3">
-    <button type="button" class="btn btn-sm btn-primary">Tambah Data</button>
+    <button type="button" class="btn btn-sm btn-primary" onclick="window.location='{{ url('novels/add') }}'" >
+        <i class="fas fa-plus-circle"></i>Tambah Data
+    </button>
   </div>
   <div class="mt-3">
     <table class="table table-sm table-stripped table-bordered">
         <thead>
             <tr>
-                <th>No Novel</th>
+                <th>ID Novel</th>
                 <th>Judul</th>
                 <th>Penulis</th>
                 <th>Halaman</th>

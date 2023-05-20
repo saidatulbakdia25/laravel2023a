@@ -22,4 +22,8 @@ Route::get('/home', function () {
     return view('layout.home');
 });
 
+Route::get('/novels/add', function () {
+    return view('novels.formadd');
+});
+
 Route::resource('novels', NovelsController::class);
