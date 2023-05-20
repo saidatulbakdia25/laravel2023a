@@ -13,7 +13,9 @@ class NovelsController extends Controller
      */
     public function index()
     {
-        //
+        return view('novels.data')->with([
+            'novels' => novels::all()
+        ]);
     }
 
     /**
