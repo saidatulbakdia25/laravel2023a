@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\RedirectResponse;
 
 class UpdatenovelsRequest extends FormRequest
 {
@@ -19,14 +20,15 @@ class UpdatenovelsRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
-    public function rules(): array
+    public function store($request): RedirectResponse
     {
-        return [
-            'txtidnovels' => 'required|unique:novels,idnovels|min:1|max:4',
-            'txtjudul' => 'required',
-            'txtpenulis' => 'required',
-            'txthalaman' => 'required',
-            'txtstokl' => 'required'
-        ];
+        //validate form
+    $this->validate($request, [
+        'txtidnovels' =>'required|min:2',
+        'txtjudul' =>'required|min:10',
+        'txtpenulis' =>'required|min:5',
+        'txthalaman' =>'required|min:2',
+        'txtstok' =>'required|min:1'
+    ]);
     }
 }
