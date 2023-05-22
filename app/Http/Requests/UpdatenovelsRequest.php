@@ -12,7 +12,7 @@ class UpdatenovelsRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -20,15 +20,8 @@ class UpdatenovelsRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
-    public function store($request): RedirectResponse
+    public function store($request)
     {
-        //validate form
-    $this->validate($request, [
-        'txtidnovels' =>'required|min:2',
-        'txtjudul' =>'required|min:10',
-        'txtpenulis' =>'required|min:5',
-        'txthalaman' =>'required|min:2',
-        'txtstok' =>'required|min:1'
-    ]);
+
     }
 }

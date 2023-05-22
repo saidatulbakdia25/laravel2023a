@@ -11,7 +11,7 @@ class StorenovelsRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class StorenovelsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'txtidnovels' => 'required|unique:novels,idnovels|min:1|max:4',
+            'txtjudul' => 'required',
+            'txtpenulis' => 'required',
+            'txthalaman' => 'required',
+            'txtstok' => 'required',
         ];
     }
 }
