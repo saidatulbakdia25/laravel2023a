@@ -29,4 +29,27 @@ class StorenovelsRequest extends FormRequest
             'txtstok' => 'required',
         ];
     }
+
+    public function messages(): array
+    {
+    return [
+        'txtidnovels.required' => ':attribute Tidak Boleh Kosong',
+        'txtidnovels.unique' => ':attribute Sudah Ada Didalam Tabel',
+        'txtjudul.required' => ':attribute Tidak Boleh Kosong',
+        'txtpenulis.required' => ':attribute Tidak Boleh Kosong',
+        'txthalaman.required' => ':attribute Tidak Boleh Kosong',
+        'txtstok.required' => ':attribute Tidak Boleh Kosong',
+    ];
+    }
+
+    public function attributes(): array
+    {
+    return [
+        'txtidnovels' => 'ID Novels',
+        'txtjudul' => 'Judul',
+        'txtpenulis' => ' Nama Penulis',
+        'txthalaman' => 'Jumlah Halaman',
+        'txtstok' => 'Jumlah Stok',
+    ];
+    }
 }

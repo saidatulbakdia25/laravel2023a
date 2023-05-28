@@ -12,7 +12,7 @@ class UpdatenovelsRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -20,8 +20,35 @@ class UpdatenovelsRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
-    public function store($request)
+    public function rules(): array
     {
-
+        return [
+            'txtjudul' => 'required',
+            'txtpenulis' => 'required',
+            'txthalaman' => 'required',
+            'txtstok' => 'required',
+        ];
     }
+
+    public function messages(): array
+    {
+    return [
+        'txtjudul.required' => ':attribute Tidak Boleh Kosong',
+        'txtpenulis.required' => ':attribute Tidak Boleh Kosong',
+        'txthalaman.required' => ':attribute Tidak Boleh Kosong',
+        'txtstok.required' => ':attribute Tidak Boleh Kosong',
+    ];
+    }
+
+    public function attributes(): array
+    {
+    return [
+        'txtjudul' => 'Judul',
+        'txtpenulis' => ' Nama Penulis',
+        'txthalaman' => 'Jumlah Halaman',
+        'txtstok' => 'Jumlah Stok',
+    ];
+    }
+
+    
 }

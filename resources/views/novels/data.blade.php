@@ -13,6 +13,13 @@
     </button>
   </div>
   <div class="mt-3">
+    @if (session('msg'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Berhasil</strong> {{ session('msg') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    </div>
+   @endif
     <table class="table table-sm table-stripped table-bordered">
         <thead>
             <tr>
@@ -21,18 +28,28 @@
                 <th>Penulis</th>
                 <th>Halaman</th>
                 <th>Stok</th>
-                <th>#</th>
+                <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($novels as $row)
             <tr>
-                <th>{{ $row->idnovels }}</th>
-                <th>{{ $row->judul }}</th>
-                <th>{{ $row->penulis }}</th>
-                <th>{{ $row->halaman }}</th>
-                <th>{{ $row->stok }}</th>
-
+                <td>{{ $row->idnovels }}</td>
+                <td>{{ $row->judul }}</td>
+                <td>{{ $row->penulis }}</td>
+                <td>{{ $row->halaman }}</td>
+                <td>{{ $row->stok }}</td>
+                <td>
+                    <button onclick="window.location='{{ url('novels/'.$row->idnovels) }}'" type="button" class="btn btn-sm btn-warning" title="Edit Data">
+                        <i class="fas fa-edit"></i>Edit
+                    </button>
+                    <form onsubmit="return deleteData('{{ $row->judul }}')" style="display:inline" method="POST" action="{{ url('novels/'.$row->idnovels) }}"></form>
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" title="Hapus Data" class="btn btn-danger btn-sm">
+                        <i class="fas fa-trash-alt"></i>Delete
+                    </button>
+                </td>
             </tr>
                 
             @endforeach
@@ -40,5 +57,12 @@
     
     </table>
   </div>
+  <script>
+    function deleteData(judul){
+        pesan = confirm('Yakin Data novels dengan judul ${judul} ini dihapus?');
+        if(pesan) return true;
+        else return false;
+    }
+  </script>
   
 @endsection
