@@ -43,11 +43,8 @@
                     <button onclick="window.location='{{ url('novels/'.$row->idnovels) }}'" type="button" class="btn btn-sm btn-warning" title="Edit Data">
                         <i class="fas fa-edit"></i>Edit
                     </button>
-                    <form onsubmit="return deleteData('{{ $row->judul }}')" style="display:inline" method="POST" action="{{ url('novels/'.$row->idnovels) }}"></form>
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" title="Hapus Data" class="btn btn-danger btn-sm">
-                        <i class="fas fa-trash-alt"></i>Delete
+                    <button onclick="window.location='{{ url('novels/'.$row->idnovels) }}'" type="button" class="btn btn-sm btn-danger" title="Hapus Data">
+                        Delete
                     </button>
                 </td>
             </tr>
@@ -57,12 +54,4 @@
     
     </table>
   </div>
-  <script>
-    function deleteData(judul){
-        pesan = confirm('Yakin Data novels dengan judul ${judul} ini dihapus?');
-        if(pesan) return true;
-        else return false;
-    }
-  </script>
-  
 @endsection
