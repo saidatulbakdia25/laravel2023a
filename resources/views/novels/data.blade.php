@@ -43,7 +43,10 @@
                     <button onclick="window.location='{{ url('novels/'.$row->idnovels) }}'" type="button" class="btn btn-sm btn-warning" title="Edit Data">
                         <i class="fas fa-edit"></i>Edit
                     </button>
-                    <button onclick="window.location='{{ url('novels/'.$row->idnovels) }}'" type="button" class="btn btn-sm btn-danger" title="Hapus Data">
+                    @csrf
+                    @method('DELETE')
+                    <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('novels.destroy', $row->idnovels) }}" method="POST">
+                    <button type="submit" class="btn btn-sm btn-danger">
                         Delete
                     </button>
                 </td>
