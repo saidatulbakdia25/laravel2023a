@@ -25,6 +25,11 @@
                 <a class="nav-link {{ (request()->segment('1')=='novels') ? 'active' : '' }}" href="{{ url('novels') }}">DAFTAR BUKU</a>
               </li>
             </ul>
+            <form action="{{ route('logout') }}" method="POST" class="d-flex" role="search">
+              @csrf
+              @method('DELETE')
+            <button class="btn btn-danger" type="submit">Logout</button>
+          </form>
           </div>
         </div>
       </nav>

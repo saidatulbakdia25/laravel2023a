@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\NovelsController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,9 +19,15 @@ Route::get('/', function () {
     return view('layout.home');
 });
 
+Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/register', [AuthController::class, 'registerPost'])->name('register');
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'loginPost'])->name('login');
+
 Route::get('/home', function () {
     return view('layout.home');
 });
+Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/novels/add', function () {
     return view('novels.formadd');
