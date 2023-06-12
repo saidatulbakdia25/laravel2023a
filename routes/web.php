@@ -21,9 +21,13 @@ Route::get('/', function () {
 
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'registerPost'])->name('register');
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/login', [AuthController::class, 'loginPost'])->name('login');
 
+Route::prefix('/login')->group(function() {
+Route::get('/', [AuthController::class, 'login'])->name('login');
+Route::post('/', [AuthController::class, 'loginPost'])->name('login');
+});
+
+Route::prefix('/')->middleware('auth')->group(function() {
 Route::get('/home', function () {
     return view('layout.home');
 });
@@ -34,3 +38,4 @@ Route::get('/novels/add', function () {
 });
 
 Route::resource('novels', NovelsController::class);
+});
