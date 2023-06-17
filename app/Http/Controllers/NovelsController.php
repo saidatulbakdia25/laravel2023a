@@ -71,9 +71,9 @@ class NovelsController extends Controller
      */
     public function destroy(novels $novels,$idnovels)
     {
-        $data = $novels->find($idnovels);
+        $data = $novels->findOrFail($idnovels);
         $data->delete();
 
-        return redirect('novels')->with('msg','Data dengan nama novels '.$data->judul.' berhasil dihapus');
+        return redirect('novels')->with('msg','Data dengan id_novels '.$data->judul.' berhasil dihapus');
     }
 }

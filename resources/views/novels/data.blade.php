@@ -32,7 +32,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($novels as $row)
+            @forelse ($novels as $row)
             <tr>
                 <td>{{ $row->idnovels }}</td>
                 <td>{{ $row->judul }}</td>
@@ -40,19 +40,23 @@
                 <td>{{ $row->halaman }}</td>
                 <td>{{ $row->stok }}</td>
                 <td>
+                    <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('novels.destroy', $row->idnovels) }}" method="POST">
                     <button onclick="window.location='{{ url('novels/'.$row->idnovels) }}'" type="button" class="btn btn-sm btn-warning" title="Edit Data">
                         <i class="fas fa-edit"></i>Edit
                     </button>
                     @csrf
                     @method('DELETE')
-                    <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('novels.destroy', $row->idnovels) }}" method="POST">
                     <button type="submit" class="btn btn-sm btn-danger">
                         Delete
                     </button>
+                    </form>
                 </td>
             </tr>
+            @empty
+            <p>Data belum tersedia</p>
+            
                 
-            @endforeach
+            @endforelse
         </tbody>
     
     </table>
