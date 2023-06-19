@@ -32,7 +32,7 @@
             </tr>
         </thead>
         <tbody>
-            @forelse ($novels as $row)
+            @foreach ($novels as $row)
             <tr>
                 <td>{{ $row->idnovels }}</td>
                 <td>{{ $row->judul }}</td>
@@ -52,11 +52,7 @@
                     </form>
                 </td>
             </tr>
-            @empty
-            <p>Data belum tersedia</p>
-            
-                
-            @endforelse
+            @endforeach
         </tbody>
     
     </table>
